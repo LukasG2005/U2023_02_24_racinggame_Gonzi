@@ -15,24 +15,7 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if(Input.GetKey(KeyCode.W))
-        {
-            transform.position += transform.forward * 0.01f;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += transform.forward * -0.01f;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += transform.forward * 0.01f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += transform.forward * 0.01f;
-        }
-        */
+        
         float InputVertical = Input.GetAxis("Vertical");
         float inputHorizontal = Input.GetAxis("Horizontal");
         rigid.AddForce(transform.forward * InputVertical * Time.deltaTime * acceleration);
