@@ -6,7 +6,9 @@ public class Car : MonoBehaviour
 {
     public float acceleration = 1;
     public float rotationSpeed = 1;
+
     Rigidbody rigid;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -15,10 +17,14 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         float InputVertical = Input.GetAxis("Vertical");
         float inputHorizontal = Input.GetAxis("Horizontal");
+
         rigid.AddForce(transform.forward * InputVertical * Time.deltaTime * acceleration);
-        transform.Rotate(new Vector3(0, inputHorizontal * Time.deltaTime * rotationSpeed, 0));
+        transform.Rotate(new Vector3(0, inputHorizontal * Time.deltaTime * rotationSpeed));
+
+        Vector3 velocity = rigid.velocity;
+        velocity = transform.forward * velocity.magnitude;
+        rigid.velocity = velocity;
     }
 }
