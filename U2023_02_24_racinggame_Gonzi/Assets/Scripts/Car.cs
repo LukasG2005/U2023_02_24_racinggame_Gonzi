@@ -6,7 +6,7 @@ public class Car : MonoBehaviour
 {
     public float acceleration = 1;
     public float rotationSpeed = 1;
-
+    public bool Drift;
     Rigidbody rigid;
 
     void Start()
@@ -23,8 +23,17 @@ public class Car : MonoBehaviour
         rigid.AddForce(transform.forward * InputVertical * Time.deltaTime * acceleration);
         transform.Rotate(new Vector3(0, inputHorizontal * Time.deltaTime * rotationSpeed));
 
-        Vector3 velocity = rigid.velocity;
-        velocity = transform.forward * velocity.magnitude;
-        rigid.velocity = velocity;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Drift = !Drift;
+        }
+        if (Drift == false)
+        {
+            Vector3 velocity = rigid.velocity;
+            velocity = transform.forward * velocity.magnitude;
+            rigid.velocity = velocity;
+        }
+
     }
 }
